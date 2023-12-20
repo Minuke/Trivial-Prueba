@@ -12,4 +12,8 @@ import { ChooseNumberTeamsComponent } from 'app/components/choose-number-teams/c
 })
 export class HomePageComponent {
 
+  getNumberTeams(teams:number){
+    console.log(teams);
+  }
+
 }
