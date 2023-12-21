@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { GameService } from 'app/services/game.service';
+import { Team } from 'app/shared/models/interfaces/team.interface';
 
 @Component({
   selector: 'app-game-page',
@@ -8,5 +10,14 @@ import { Component } from '@angular/core';
   styleUrl: './game-page.component.scss'
 })
 export class GamePageComponent {
+
+  public teams: Team[] = [];
+
+  private gameService:GameService = inject(GameService);
+
+  ngOnInit() {
+    this.teams = this.gameService.getDatos();
+    console.log(this.teams);
+  }
 
 }
