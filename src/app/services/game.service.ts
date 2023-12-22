@@ -10,9 +10,17 @@ export class GameService {
 
   setDatos(newDataTeam: Team[]): void {
     this.teamData = newDataTeam;
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('teamData', JSON.stringify(newDataTeam));
+    }
   }
 
   getDatos(): Team[] {
+    if (!this.teamData.length) {
+      if (typeof localStorage !== 'undefined') {
+        this.teamData = JSON.parse(localStorage.getItem('teamData') || '[]');
+      }
+    }
     return this.teamData;
   }
 
