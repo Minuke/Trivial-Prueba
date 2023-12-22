@@ -1,4 +1,9 @@
 export interface Trivial {
   question: string;
-  answers: string[];
+  answers: Answers[];
+}
+
+interface Answers {
+  answer: string;
+  correct: boolean;
 }

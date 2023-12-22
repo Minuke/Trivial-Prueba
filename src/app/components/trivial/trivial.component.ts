@@ -11,6 +11,6 @@ import { Trivial } from 'app/shared/models/interfaces/trivial.interface';
 })
 export class TrivialComponent {
 
-  @Input() questionsData:Trivial[] = [];
+  @Input() questionData:Trivial = {question:"", answers:[]};
 
 }
