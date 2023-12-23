@@ -6,4 +6,5 @@ export interface Trivial {
 interface Answers {
   answer: string;
   correct: boolean;
+  selected?: boolean;
 }

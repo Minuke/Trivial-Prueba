@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
 import { Trivial } from 'app/shared/models/interfaces/trivial.interface';
 
 @Component({
@@ -13,8 +13,18 @@ export class TrivialComponent {
 
   @Input() questionData:Trivial = {question:"", answers:[]};
 
-  selectAnswer(answer:string):void {
-    console.log(answer);
+  selectAnswer(selectedAnswer:string, correct:boolean):void {
+    console.log(selectedAnswer);
+    console.log(correct);
+
+    this.questionData.answers.forEach(answer => {
+      if (answer.answer === selectedAnswer) {
+        answer.selected = true;
+      }
+    });
+
+
+
   }
 
 }
