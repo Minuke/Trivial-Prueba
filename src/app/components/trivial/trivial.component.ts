@@ -13,4 +13,8 @@ export class TrivialComponent {
 
   @Input() questionData:Trivial = {question:"", answers:[]};
 
+  selectAnswer(answer:string):void {
+    console.log(answer);
+  }
+
 }
