@@ -17,11 +17,9 @@ export class GamePageComponent {
   public teams: Team[] = [];
 
   private gameService:GameService = inject(GameService);
-
   public questionData: Trivial = this.gameService.getQuestion();
 
   ngOnInit() {
     this.teams = this.gameService.getDatos();
   }
-
 }
