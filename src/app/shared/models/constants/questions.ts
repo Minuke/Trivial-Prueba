@@ -3,6 +3,7 @@ import { Trivial } from "../interfaces/trivial.interface";
 export const questions: Trivial[] = [
   {
     question: '¿Cuál es la capital de España?',
+    totalCorrectAnswers: 1,
     answers: [
       { answer: 'Madrid', correct: true },
       { answer: 'Barcelona', correct: false },

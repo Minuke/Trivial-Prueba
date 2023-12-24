@@ -17,16 +17,20 @@ export class TrivialComponent {
 
   public currentTurn = 0;
   public currentTeam!: Team;
+  public totalCorrectAnswerSelected:number = 0;
+  public nextQuestion:boolean = false;
 
   selectAnswer(selectedAnswer:string, correct:boolean):void {
-    console.log(selectedAnswer);
-    console.log(correct);
+    //console.log(selectedAnswer);
+    //console.log(correct);
     const teamActually:Team = this.nextTurn();
     this.questionData.answers.forEach(answer => {
       if (answer.answer === selectedAnswer) {
         answer.selected = true;
         if(correct) {
           teamActually.score += 1;
+          this.totalCorrectAnswerSelected += 1;
+          this.nextQuestion = this.questionIsFinished(this.questionData.totalCorrectAnswers);
         }
       }
     });
@@ -41,6 +45,14 @@ export class TrivialComponent {
     console.log(this.currentTeam);
     this.currentTurn++;
     return this.currentTeam;
+  }
+
+  questionIsFinished(totalCorrectAnswerSelected:number):boolean {
+    if(totalCorrectAnswerSelected == this.totalCorrectAnswerSelected) {
+      return true;
+    }else {
+      return false;
+    }
   }
 
 }

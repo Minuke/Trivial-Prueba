@@ -1,5 +1,6 @@
 export interface Trivial {
   question: string;
+  totalCorrectAnswers: number;
   answers: Answers[];
 }
 
