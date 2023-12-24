@@ -23,17 +23,24 @@ export class TrivialComponent {
   selectAnswer(selectedAnswer:string, correct:boolean):void {
     //console.log(selectedAnswer);
     //console.log(correct);
-    const teamActually:Team = this.nextTurn();
-    this.questionData.answers.forEach(answer => {
-      if (answer.answer === selectedAnswer) {
-        answer.selected = true;
-        if(correct) {
-          teamActually.score += 1;
-          this.totalCorrectAnswerSelected += 1;
-          this.nextQuestion = this.questionIsFinished(this.questionData.totalCorrectAnswers);
+    if(this.nextQuestion == false){
+      const teamActually:Team = this.nextTurn();
+      this.questionData.answers.forEach(answer => {
+        if (answer.answer === selectedAnswer) {
+          answer.selected = true;
+          if(correct) {
+            teamActually.score += 1;
+            this.totalCorrectAnswerSelected += 1;
+            this.nextQuestion = this.questionIsFinished(this.questionData.totalCorrectAnswers);
+            if(this.nextQuestion == true){
+
+
+            }
+          }
         }
-      }
-    });
+      });
+    }
+
 
   }
 
