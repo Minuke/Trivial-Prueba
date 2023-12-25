@@ -17,7 +17,14 @@
   </div>
 </div>
 
-<div class="next-question-button">
-  <button type="submit" (click)="otherQuestion()" [disabled]="!nextQuestion">Siguiente Pregunta</button>
-</div>
+@if(endGame){
+  <div class="next-question-button">
+    <button type="submit" (click)="goToResults()" [disabled]="!nextQuestion">Final del Juego</button>
+  </div>
+}@else{
+  <div class="next-question-button">
+    <button type="submit" (click)="otherQuestion()" [disabled]="!nextQuestion">Siguiente Pregunta</button>
+  </div>
+}
+
 

@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { Team } from 'app/shared/models/interfaces/team.interface';
 import { Trivial } from 'app/shared/models/interfaces/trivial.interface';
+
 
 @Component({
   selector: 'app-trivial',
@@ -14,12 +16,15 @@ export class TrivialComponent {
 
   @Input() questionData!:Trivial;
   @Input() teams!:Team[];
+  @Input() endGame!:boolean;
   @Output() nextQuestionEmitter:EventEmitter<boolean> = new EventEmitter<boolean>;
 
   public currentTurn = 0;
   public currentTeam!: Team;
   public totalCorrectAnswerSelected:number = 0;
   public nextQuestion:boolean = false;
+
+  private router:Router = inject(Router);
 
   selectAnswer(selectedAnswer:string, correct:boolean):void {
     //console.log(selectedAnswer);
@@ -63,6 +68,10 @@ export class TrivialComponent {
     this.nextQuestionEmitter.emit(this.nextQuestion);
     this.nextQuestion = false;
     this.totalCorrectAnswerSelected = 0;
+  }
+
+  goToResults():void {
+    this.router.navigate(['/results']);
   }
 
 }

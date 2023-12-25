@@ -14,18 +14,28 @@ import { Trivial } from 'app/shared/models/interfaces/trivial.interface';
 })
 export class GamePageComponent {
 
-  public teams: Team[] = [];
-
   private gameService:GameService = inject(GameService);
+
+  public teams: Team[] = [];
   public questionData: Trivial = {question:"", totalCorrectAnswers:0, answers:[]};
+  public endGame:boolean = false;
+  public totalQuestionInGame:number = 2;
+  public totalQuestionShowedInGame:number = 0;
 
   ngOnInit():void {
     this.teams = this.gameService.getDatos();
     this.questionData = this.gameService.getQuestion0();
+    this.totalQuestionShowedInGame = this.gameService.getTotalQuestionsShowedInGame();
   }
 
 
   getNextQuestion(evento:boolean):void {
-    this.questionData = this.gameService.getQuestion1();
+    if(this.endGame == false) {
+      this.questionData = this.gameService.getQuestion1();
+      this.totalQuestionShowedInGame = this.gameService.getTotalQuestionsShowedInGame();
+      if(this.totalQuestionInGame == this.totalQuestionShowedInGame) {
+        this.endGame = true;
+      }
+    }
   }
 }
