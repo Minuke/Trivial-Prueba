@@ -27,6 +27,14 @@ export class GameService {
     return this.teamData;
   }
 
+  deleteDatos() {
+    if (this.teamData.length) {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.removeItem('teamData');
+      }
+    }
+  }
+
   getQuestion0():Trivial {
     this.totalQuestionShowedInGame += 1;
     return questions[0];

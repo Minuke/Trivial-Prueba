@@ -3,6 +3,7 @@ import { ScoreBoardComponent } from '../../components/score-board/score-board.co
 import { Team } from 'app/shared/models/interfaces/team.interface';
 import { GameService } from 'app/services/game.service';
 import { GameWinnerComponent } from 'app/components/game-winner/game-winner.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-results-page',
@@ -15,9 +16,16 @@ export class ResultsPageComponent {
 
   public teams: Team[] = [];
   private gameService:GameService = inject(GameService);
+  private router:Router = inject(Router);
 
   ngOnInit():void {
     this.teams = this.gameService.getDatos();
+  }
+
+  startingAgain(){
+    console.log("startAgain")
+    this.gameService.deleteDatos();
+    this.router.navigate(['/home']);
   }
 
 }
