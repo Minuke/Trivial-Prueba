@@ -18,7 +18,6 @@ export class ResultsPageComponent {
 
   ngOnInit():void {
     this.teams = this.gameService.getDatos();
-    console.log(this.teams)
   }
 
 }

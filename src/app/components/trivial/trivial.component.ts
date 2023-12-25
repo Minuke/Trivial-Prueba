@@ -29,8 +29,6 @@ export class TrivialComponent {
   private router:Router = inject(Router);
 
   selectAnswer(selectedAnswer:string, correct:boolean):void {
-    //console.log(selectedAnswer);
-    //console.log(correct);
     if(this.nextQuestion == false){
       const teamActually:Team = this.nextTurn();
       this.questionData.answers.forEach(answer => {
@@ -54,7 +52,6 @@ export class TrivialComponent {
       this.currentTurn = 0;
     }
     this.currentTeam = this.teams[this.currentTurn];
-    console.log(this.currentTeam);
     this.currentTurn++;
     return this.currentTeam;
   }
