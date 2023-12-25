@@ -26,8 +26,12 @@ export class GameService {
     return this.teamData;
   }
 
-  getQuestion():Trivial {
+  getQuestion0():Trivial {
     return questions[0];
+  }
+
+  getQuestion1():Trivial {
+    return questions[1];
   }
 
 }

@@ -17,9 +17,15 @@ export class GamePageComponent {
   public teams: Team[] = [];
 
   private gameService:GameService = inject(GameService);
-  public questionData: Trivial = this.gameService.getQuestion();
+  public questionData: Trivial = {question:"", totalCorrectAnswers:0, answers:[]};
 
-  ngOnInit() {
+  ngOnInit():void {
     this.teams = this.gameService.getDatos();
+    this.questionData = this.gameService.getQuestion0();
+  }
+
+
+  getNextQuestion(evento:boolean):void {
+    this.questionData = this.gameService.getQuestion1();
   }
 }

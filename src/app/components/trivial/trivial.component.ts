@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Team } from 'app/shared/models/interfaces/team.interface';
 import { Trivial } from 'app/shared/models/interfaces/trivial.interface';
 
@@ -14,6 +14,7 @@ export class TrivialComponent {
 
   @Input() questionData!:Trivial;
   @Input() teams!:Team[];
+  @Output() nextQuestionEmitter:EventEmitter<boolean> = new EventEmitter<boolean>;
 
   public currentTurn = 0;
   public currentTeam!: Team;
@@ -32,10 +33,6 @@ export class TrivialComponent {
             teamActually.score += 1;
             this.totalCorrectAnswerSelected += 1;
             this.nextQuestion = this.questionIsFinished(this.questionData.totalCorrectAnswers);
-            if(this.nextQuestion == true){
-
-
-            }
           }
         }
       });
@@ -60,6 +57,12 @@ export class TrivialComponent {
     }else {
       return false;
     }
+  }
+
+  otherQuestion():void {
+    this.nextQuestionEmitter.emit(this.nextQuestion);
+    this.nextQuestion = false;
+    this.totalCorrectAnswerSelected = 0;
   }
 
 }
