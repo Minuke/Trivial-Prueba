@@ -1,9 +1,11 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
+import { homeGuard } from "app/guards/home.guard";
 import { HomePageComponent } from "app/pages/home-page/home-page.component";
 
 export const homeRoutes: Routes = [
   {
     path:"",
-    component: HomePageComponent
+    component: HomePageComponent,
+    canActivate: [homeGuard]
   }
 ]
