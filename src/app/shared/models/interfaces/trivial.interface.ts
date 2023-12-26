@@ -4,7 +4,7 @@ export interface Trivial {
   answers: Answers[];
 }
 
-interface Answers {
+export interface Answers {
   answer: string;
   correct: boolean;
   selected?: boolean;

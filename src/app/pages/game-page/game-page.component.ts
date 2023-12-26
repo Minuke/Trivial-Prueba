@@ -25,16 +25,17 @@ export class GamePageComponent {
   ngOnInit():void {
     this.teams = this.gameService.getDatos();
     this.questionData = this.gameService.getQuestion0();
-    this.totalQuestionShowedInGame = this.gameService.getTotalQuestionsShowedInGame();
+    this.totalQuestionShowedInGame = 0;
   }
 
 
   getNextQuestion(evento:boolean):void {
+    this.totalQuestionShowedInGame += 1;
     if(this.endGame == false) {
       this.questionData = this.gameService.getQuestion1();
-      this.totalQuestionShowedInGame = this.gameService.getTotalQuestionsShowedInGame();
-      if(this.totalQuestionInGame == this.totalQuestionShowedInGame) {
+      if(this.totalQuestionInGame == this.totalQuestionShowedInGame+1) {
         this.endGame = true;
+        this.totalQuestionShowedInGame = 0;
       }
     }
   }

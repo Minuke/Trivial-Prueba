@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameService } from 'app/services/game.service';
 import { Team } from 'app/shared/models/interfaces/team.interface';
-import { Trivial } from 'app/shared/models/interfaces/trivial.interface';
+import { Answers, Trivial } from 'app/shared/models/interfaces/trivial.interface';
 
 
 @Component({
@@ -24,6 +24,7 @@ export class TrivialComponent {
   public currentTeam!: Team;
   public totalCorrectAnswerSelected:number = 0;
   public nextQuestion:boolean = false;
+  public answerSelected:Answers[] = [];
 
   private gameService:GameService = inject(GameService);
   private router:Router = inject(Router);
@@ -33,6 +34,7 @@ export class TrivialComponent {
       const teamActually:Team = this.nextTurn();
       this.questionData.answers.forEach(answer => {
         if (answer.answer === selectedAnswer) {
+          this.answerSelected.push(answer);
           answer.selected = true;
           if(correct) {
             teamActually.score += 1;
@@ -43,8 +45,6 @@ export class TrivialComponent {
         }
       });
     }
-
-
   }
 
   nextTurn():Team {
@@ -68,9 +68,18 @@ export class TrivialComponent {
     this.nextQuestionEmitter.emit(this.nextQuestion);
     this.nextQuestion = false;
     this.totalCorrectAnswerSelected = 0;
+    this.answerSelected.forEach((obj) => {
+      obj.selected = false;
+    });
+    this.answerSelected = [];
+
   }
 
   goToResults():void {
+    this.answerSelected.forEach((obj) => {
+      obj.selected = false;
+    });
+    this.answerSelected = [];
     this.router.navigate(['/results']);
   }
 

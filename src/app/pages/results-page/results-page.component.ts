@@ -23,7 +23,6 @@ export class ResultsPageComponent {
   }
 
   startingAgain(){
-    console.log("startAgain")
     this.gameService.deleteDatos();
     this.router.navigate(['/home']);
   }

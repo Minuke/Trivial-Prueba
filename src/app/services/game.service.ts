@@ -9,7 +9,6 @@ import { Trivial } from 'app/shared/models/interfaces/trivial.interface';
 export class GameService {
 
   private teamData:Team[] = [];
-  public totalQuestionShowedInGame:number = 0;
 
   setDatos(newDataTeam: Team[]): void {
     this.teamData = newDataTeam;
@@ -36,17 +35,10 @@ export class GameService {
   }
 
   getQuestion0():Trivial {
-    this.totalQuestionShowedInGame += 1;
     return questions[0];
   }
 
   getQuestion1():Trivial {
-    this.totalQuestionShowedInGame += 1;
     return questions[1];
   }
-
-  getTotalQuestionsShowedInGame(): number {
-    return this.totalQuestionShowedInGame;
-  }
-
 }
