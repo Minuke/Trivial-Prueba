@@ -68,19 +68,26 @@ export class TrivialComponent {
     this.nextQuestionEmitter.emit(this.nextQuestion);
     this.nextQuestion = false;
     this.totalCorrectAnswerSelected = 0;
-    this.answerSelected.forEach((obj) => {
-      obj.selected = false;
-    });
-    this.answerSelected = [];
+    this.resetSelectedAnswers();
 
   }
 
   goToResults():void {
+    this.resetSelectedAnswers();
+    this.router.navigate(['/results']);
+  }
+
+  startingAgain(){
+    this.resetSelectedAnswers();
+    this.gameService.deleteDatos();
+    this.router.navigate(['/home']);
+  }
+
+  resetSelectedAnswers() {
     this.answerSelected.forEach((obj) => {
       obj.selected = false;
     });
     this.answerSelected = [];
-    this.router.navigate(['/results']);
   }
 
 }
