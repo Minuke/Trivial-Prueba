@@ -33,5 +33,21 @@ export const questions: Trivial[] = [
       { answer: "Eris", correct: false }
     ]
   },
+  {
+    question: "¿Cuáles de los siguientes son autores famosos de literatura española?",
+    totalCorrectAnswers: 2,
+    answers: [
+      { answer: "Gabriel García Márquez", correct: false },
+      { answer: "Ernest Hemingway", correct: false },
+      { answer: "Miguel de Cervantes", correct: true },
+      { answer: "Federico García Lorca", correct: true },
+      { answer: "J.K. Rowling", correct: false },
+      { answer: "George R.R. Martin", correct: false },
+      { answer: "Stephen King", correct: false },
+      { answer: "Agatha Christie", correct: false },
+      { answer: "Camilo José Cela", correct: false },
+      { answer: "J.R.R. Tolkien", correct: false }
+    ]
+  },
   // Puedes agregar más preguntas aquí...
 ];

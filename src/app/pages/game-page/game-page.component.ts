@@ -24,15 +24,19 @@ export class GamePageComponent {
 
   ngOnInit():void {
     this.teams = this.gameService.getDatos();
-    this.questionData = this.gameService.getQuestion0();
+    this.searchAndShowQuestion()
     this.totalQuestionShowedInGame = 0;
+  }
+
+  searchAndShowQuestion(){
+    this.questionData = this.gameService.getRandomQuestion();
   }
 
 
   getNextQuestion(evento:boolean):void {
     this.totalQuestionShowedInGame += 1;
     if(this.endGame == false) {
-      this.questionData = this.gameService.getQuestion1();
+      this.searchAndShowQuestion();
       if(this.totalQuestionInGame == this.totalQuestionShowedInGame+1) {
         this.endGame = true;
         this.totalQuestionShowedInGame = 0;
